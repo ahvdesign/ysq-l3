@@ -1,0 +1,19 @@
+.Question {
+  margin-bottom: 20px;
+
+  .question {
+    &-input {
+      width: 20px;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    &-text {
+      display: inline;
+      margin: 0;
+      margin-left: 20px;
+    }
+  }
+}
