@@ -2,4 +2,34 @@
   background-color: #eee;
   padding: 100px;
   // border-radius: 5px;
+
+  .btn-submit {
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 100px;
+    margin-top: 20px;
+    background-color: rgb(52, 89, 255);
+    color: #fff;
+    transform: translateY(0);
+    box-shadow: none;
+
+    transition: all 0.2s;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    &:focus,
+    &:active {
+      &:hover {
+        transform: translateY(0);
+        box-shadow: none;
+      }
+    }
+  }
 }

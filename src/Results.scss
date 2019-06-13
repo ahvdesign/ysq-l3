@@ -1,2 +1,20 @@
 .Results {
+  .results-row {
+    display: flex;
+
+    .schema {
+      &-name {
+        flex: 1;
+      }
+      &-code {
+        flex: 1;
+      }
+      &-count {
+        flex: 1;
+      }
+      &-result {
+        flex: 1;
+      }
+    }
+  }
 }
