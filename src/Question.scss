@@ -5,15 +5,18 @@
     &-input {
       width: 20px;
       padding: 10px;
+      margin-left: 10px;
       text-align: center;
       font-weight: bold;
       font-size: 16px;
+      border-radius: 2px;
+      border: none;
     }
 
     &-text {
       display: inline;
       margin: 0;
-      margin-left: 20px;
+      margin-left: 15px;
     }
   }
 }
