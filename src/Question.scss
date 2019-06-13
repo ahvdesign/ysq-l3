@@ -3,20 +3,35 @@
 
   .question {
     &-input {
-      width: 20px;
+      width: 40px;
       padding: 10px;
       margin-left: 10px;
       text-align: center;
       font-weight: bold;
       font-size: 16px;
       border-radius: 2px;
-      border: none;
+      border: 2px solid rgba(0, 0, 0, 0);
+
+      transition: all 0.3s ease-in;
     }
 
     &-text {
       display: inline;
       margin: 0;
       margin-left: 15px;
+    }
+
+    &-error {
+      width: 40px;
+      padding: 10px;
+      margin-left: 10px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 2px;
+      border: 2px solid #f44;
+
+      transition: all 0.3s ease-in;
     }
   }
 }

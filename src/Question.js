@@ -2,12 +2,20 @@ import React, { Component } from 'react';
 import './Question.scss';
 
 class Question extends Component {
+  state = {
+    errorActive: false
+  };
+
   onChange = e => {
-    this.props.handleChange(
-      this.props.number,
-      this.props.schema,
-      e.target.value
-    );
+    const value = e.target.value;
+
+    if (value < 1 || value > 6 || Number(value) % 1 != 0) {
+      this.setState({ errorActive: true });
+    } else {
+      this.setState({ errorActive: false });
+    }
+
+    this.props.handleChange(this.props.number, this.props.schema, value);
   };
 
   render() {
@@ -15,7 +23,9 @@ class Question extends Component {
       <div className="Question">
         <input
           type="text"
-          className="question-input"
+          className={
+            this.state.errorActive ? 'question-error' : 'question-input'
+          }
           onChange={this.onChange}
         />
         <p className="question-text">{this.props.text}</p>
