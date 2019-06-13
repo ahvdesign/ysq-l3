@@ -3,13 +3,16 @@ import './Question.scss';
 
 class Question extends Component {
   state = {
-    errorActive: false
+    errorActive: false,
+    value: ''
   };
 
   onChange = e => {
     const value = e.target.value;
 
-    if (value < 1 || value > 6 || Number(value) % 1 != 0) {
+    this.setState({ value: Number(value) });
+
+    if (value < 1 || value > 6 || Number(value) % 1 !== 0) {
       this.setState({ errorActive: true });
     } else {
       this.setState({ errorActive: false });
@@ -27,6 +30,7 @@ class Question extends Component {
             this.state.errorActive ? 'question-error' : 'question-input'
           }
           onChange={this.onChange}
+          value={this.state.value}
         />
         <p className="question-text">{this.props.text}</p>
       </div>

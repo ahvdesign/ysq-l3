@@ -8,6 +8,8 @@ import Results from './Results';
 
 const data = db.db;
 let key = 0;
+let resultData = data;
+let output;
 
 // NEEDS:
 // 1. Count for total of each schema
@@ -128,12 +130,72 @@ class App extends Component {
         fours: 0,
         fives: 0,
         sixes: 0
-      }
+      },
+      renderResults: false
     };
   }
 
   handleChange = (number, schema, value) => {
-    console.log(`${number} - ${schema} - ${value}`);
+    resultData[number - 1].value = Number(value);
+
+    output = resultData.map(function(obj) {
+      return Object.keys(obj)
+        .sort()
+        .map(function(key) {
+          return obj[key];
+        });
+    });
+  };
+
+  handleSchema = schemaName => {
+    let total = 0;
+    let fours = 0;
+    let fives = 0;
+    let sixes = 0;
+
+    output.map(question => {
+      if (question[1] === schemaName) {
+        total += question[3];
+        if (question[3] === 4) {
+          fours++;
+        } else if (question[3] === 5) {
+          fives++;
+        } else if (question[3] === 6) {
+          sixes++;
+        }
+
+        this.setState({
+          [schemaName]: {
+            total,
+            fours,
+            fives,
+            sixes
+          }
+        });
+      }
+    });
+  };
+
+  updateState = () => {
+    this.handleSchema('emotionalDeprivation');
+    this.handleSchema('abandonment');
+    this.handleSchema('mistrustAbuse');
+    this.handleSchema('socialIsolation');
+    this.handleSchema('defectiveness');
+    this.handleSchema('failure');
+    this.handleSchema('dependence');
+    this.handleSchema('vulnerability');
+    this.handleSchema('enmeshment');
+    this.handleSchema('subjugation');
+    this.handleSchema('selfSacrifice');
+    this.handleSchema('emotionalInhibition');
+    this.handleSchema('unrelentingStandards');
+    this.handleSchema('entitlement');
+    this.handleSchema('insufficientSelfControl');
+    this.handleSchema('approvalSeeking');
+    this.handleSchema('negativityPessimism');
+    this.handleSchema('punitiveness');
+    this.setState({ renderResults: true });
   };
 
   render() {
@@ -156,7 +218,10 @@ class App extends Component {
             );
           })}
         </ol>
-        <Results data={this.state} />
+        <button className="btn-submit" onClick={this.updateState}>
+          Submit!
+        </button>
+        {this.state.renderResults ? <Results data={this.state} /> : <p />}
       </div>
     );
   }
